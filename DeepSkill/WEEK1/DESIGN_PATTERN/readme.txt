@@ -1,1 +1,1 @@
-All the codes and picture of output are in the src folder of respective Java Project
+All the codes and picture of output of the mandatory exercise are in the src folder of respective Java Project
