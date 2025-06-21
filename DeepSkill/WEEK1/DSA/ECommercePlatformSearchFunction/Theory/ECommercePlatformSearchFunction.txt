@@ -1,0 +1,28 @@
+1)Explain Big O notation and how it helps in analyzing algorithms
+
+Big O describes how the runtime or space requirements of an algorithm grow as the input size increases.It helps analyze and compare the efficiency of algorithms by focusing on how their runtime or space requirements scale with larger inputs
+How it helps in analyzing algorithms:
+1. Comparing Algorithm Efficiency
+2. Predicting Performance
+3. Identifying Bottlenecks
+4. Choosing the Right Data Structure
+
+
+2)Describe the best, average, and worst-case scenarios for search operations
+
+	              Best Case           						Average Case							Worst Case
+
+Linear Search:          O(1)								    O(n)							   O(n)
+		{When the search element is present at the first place}		{on average, search goes through half of the array}		{search element is either at the last or not found}
+
+	
+Binary Search:          O(1)								    O(log n)							   O(log n)
+		{when the search element is present at the middle place}	{logarithmic steps to locate the element}			{element not found or found after full divide-and-conquer}
+
+
+
+3)Compare the time complexity of linear and binary search algorithms. Discuss which algorithm is more suitable for your platform and why.
+
+The linear search takes time complexity of O(n) on average and worst case while the binary search takes O(log n) on average and worst case as it divides the search space into 2 in each step and search either one of the halves.
+
+For my platform i would always choose binary search as it is faster than linear search as it divides the search space into 2 in each step.And in real world datasets are usually large and and the search function tend to be critical so the binary search or the interpolation search(improved version of binary search) is more suitable.

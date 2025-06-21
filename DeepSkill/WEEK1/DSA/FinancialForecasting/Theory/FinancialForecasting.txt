@@ -1,0 +1,21 @@
+1)What is Recursion? How it can simplify certain problems?
+
+Recursion is a programming technique where the function call itself again and again repeatedly until it satisfy the condition of the base class.
+
+Recursion simplifies problems that
+1)Have a repetitive or self-similar structure.
+2)Can be divided into smaller instances of the same problem.
+3)Are naturally hierarchical, like tree traversal or factorials.
+
+
+2)Discuss the time complexity of your recursive algorithm.
+
+As the recursive function calls the function once per year and there is total n years and in each call it does one multiplication so the time complexity of the recursive algorithm is O(n).
+
+
+3)Explain how to optimize the recursive solution to avoid excessive computation.
+Recursive solutions are elegant but can be inefficient or slow if not optimized, specially for problems with overlapping subproblems or deep call stacks. 
+The ways to optimize recursion are:
+1)Memoization: Store the results of expensive recursive calls in a cache (e.g., array, map) so that repeated calls return instantly instead of recalculating.
+2)Tail Recursion Optimization:A special case of recursion where the recursive call is the last operation in the function. Some compilers can optimize it into a loop internally.
+3)Limit Recursion Depth
