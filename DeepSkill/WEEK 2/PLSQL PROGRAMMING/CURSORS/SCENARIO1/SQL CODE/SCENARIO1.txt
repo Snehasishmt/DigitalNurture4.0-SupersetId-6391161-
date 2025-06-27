@@ -1,0 +1,29 @@
+Exercise 6: Cursors
+Scenario 1: Generate monthly statements for all customers.
+Question: Write a PL/SQL block using an explicit cursor GenerateMonthlyStatements that retrieves all transactions for the current month and prints a statement for each customer.
+
+
+DECLARE
+   CURSOR customer_cur IS
+      SELECT CustomerID, Name FROM Customers;
+   CURSOR GenerateMonthlyStatements(p_customer_id NUMBER) IS
+      SELECT t.TransactionDate, t.Amount, t.TransactionType
+      FROM Accounts a
+      JOIN Transactions t ON a.AccountID = t.AccountID
+      WHERE a.CustomerID = p_customer_id
+        AND TRUNC(t.TransactionDate, 'MM') = TRUNC(SYSDATE, 'MM');
+BEGIN
+   FOR cust_rec IN customer_cur LOOP
+      DBMS_OUTPUT.PUT_LINE('==============================================');
+      DBMS_OUTPUT.PUT_LINE('Monthly Statement for Customer ID: ' || cust_rec.CustomerID || ', Name: ' || cust_rec.Name);
+      DBMS_OUTPUT.PUT_LINE('Date       | Type       | Amount');
+      DBMS_OUTPUT.PUT_LINE('-----------|------------|--------');
+      FOR txn_rec IN GenerateMonthlyStatements(cust_rec.CustomerID) LOOP
+         DBMS_OUTPUT.PUT_LINE(TO_CHAR(txn_rec.TransactionDate, 'DD-MON-YYYY') || ' | ' ||
+                              RPAD(txn_rec.TransactionType, 10) || ' | ' ||
+                              txn_rec.Amount);
+      END LOOP;
+      DBMS_OUTPUT.PUT_LINE('==============================================');
+   END LOOP;
+END;
+

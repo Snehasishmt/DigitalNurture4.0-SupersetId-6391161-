@@ -1,0 +1,60 @@
+Exercise 3: Stored Procedures
+
+Scenario 3:Customers should be able to transfer funds between their accounts.
+Question: Write a stored procedure TransferFunds that transfers a specified amount from one account to another, checking that the source account has sufficient balance before making the transfer.
+
+CREATE OR REPLACE PROCEDURE TransferFunds (
+   p_from_account_id IN NUMBER,
+   p_to_account_id   IN NUMBER,
+   p_amount          IN NUMBER
+) IS
+   v_from_balance NUMBER;
+   v_to_balance   NUMBER;
+BEGIN
+   SELECT Balance INTO v_from_balance
+   FROM Accounts
+   WHERE AccountID = p_from_account_id;
+   IF v_from_balance < p_amount THEN
+      DBMS_OUTPUT.PUT_LINE('Transfer failed: insufficient balance.');
+      RETURN;
+   END IF;
+   SELECT Balance INTO v_to_balance
+   FROM Accounts
+   WHERE AccountID = p_to_account_id;
+   UPDATE Accounts
+   SET Balance = Balance - p_amount,
+       LastModified = SYSDATE
+   WHERE AccountID = p_from_account_id;
+   UPDATE Accounts
+   SET Balance = Balance + p_amount,
+       LastModified = SYSDATE
+   WHERE AccountID = p_to_account_id;
+
+   COMMIT;
+
+   DBMS_OUTPUT.PUT_LINE('Transferred ' || p_amount || ' from Account ' || p_from_account_id || ' to Account ' || p_to_account_id);
+EXCEPTION
+   WHEN NO_DATA_FOUND THEN
+      ROLLBACK;
+      DBMS_OUTPUT.PUT_LINE('Transfer failed: One or both accounts not found.');
+   WHEN OTHERS THEN
+      ROLLBACK;
+      DBMS_OUTPUT.PUT_LINE('Transfer failed due to error: ' || SQLERRM);
+END;
+/
+
+
+
+BEGIN
+    TRANSFERFUNDS(101, 202, 500);
+END;
+
+
+
+BEGIN
+    TRANSFERFUNDS(1, 2, 500);
+END;
+
+
+
+

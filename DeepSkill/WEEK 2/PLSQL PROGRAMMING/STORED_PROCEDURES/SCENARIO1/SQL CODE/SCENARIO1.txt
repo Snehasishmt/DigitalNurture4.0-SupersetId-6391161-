@@ -1,0 +1,27 @@
+Exercise 3: Stored Procedures
+Scenario 1:The bank needs to process monthly interest for all savings accounts.
+Question: Write a stored procedure ProcessMonthlyInterest that calculates and updates the balance of all savings accounts by applying an interest rate of 1% to the current balance.
+
+
+CREATE OR REPLACE PROCEDURE ProcessMonthlyInterest IS
+   CURSOR savings_cur IS
+      SELECT AccountID, Balance
+      FROM Accounts
+      WHERE UPPER(AccountType) = 'SAVINGS';
+   v_new_balance NUMBER;
+BEGIN
+   FOR rec IN savings_cur 
+   LOOP
+      v_new_balance := rec.Balance * 1.01;
+      UPDATE Accounts
+      SET Balance = v_new_balance,
+          LastModified = SYSDATE
+      WHERE AccountID = rec.AccountID;
+      DBMS_OUTPUT.PUT_LINE('Interest applied to Account ID: ' || rec.AccountID || ', New Balance: ' || v_new_balance);
+   END LOOP;
+   COMMIT;
+END;
+/
+BEGIN
+    PROCESSMONTHLYINTEREST;
+END;

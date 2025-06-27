@@ -1,0 +1,11 @@
+Exercise 1: Control Structures
+Scenario 3: The bank wants to send reminders to customers whose loans are due within the next 30 days.
+Question: Write a PL/SQL block that fetches all loans due in the next 30 days and prints a reminder message for each customer.
+
+
+BEGIN
+    FOR REC IN (SELECT * FROM CUSTOMERS NATURAL JOIN LOANS WHERE ENDDATE BETWEEN SYSDATE AND SYSDATE+30) 
+    LOOP
+         DBMS_OUTPUT.PUT_LINE('Reminder: Loan ID ' || REC.LOANID ||' for Customer ID ' || REC.CUSTOMERID||' is due on ' || REC.ENDDATE);
+    END LOOP;
+END;

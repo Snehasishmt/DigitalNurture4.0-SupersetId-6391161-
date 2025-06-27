@@ -1,0 +1,30 @@
+Exercise 3: Stored Procedures
+
+Scenario 2:The bank wants to implement a bonus scheme for employees based on their performance.
+Question: Write a stored procedure UpdateEmployeeBonus that updates the salary of employees in a given department by adding a bonus percentage passed as a parameter.
+
+
+CREATE OR REPLACE PROCEDURE UpdateEmployeeBonus (
+   p_department IN VARCHAR2,
+   p_bonus_pct  IN NUMBER
+) IS
+   CURSOR emp_cur IS
+      SELECT EmployeeID, Name, Salary
+      FROM Employees
+      WHERE UPPER(Department) = UPPER(p_department);
+    v_new_salary NUMBER;
+BEGIN
+   FOR rec IN emp_cur 
+   LOOP
+      v_new_salary := rec.Salary + (rec.Salary * p_bonus_pct / 100);
+      UPDATE Employees
+      SET Salary = v_new_salary
+      WHERE EmployeeID = rec.EmployeeID;
+      DBMS_OUTPUT.PUT_LINE('Bonus applied to Employee ID: ' || rec.EmployeeID || ', New Salary: ' || v_new_salary);
+   END LOOP;
+   COMMIT;
+END;
+/
+BEGIN
+    UPDATEEMPLOYEEBONUS('HR',10);
+END;

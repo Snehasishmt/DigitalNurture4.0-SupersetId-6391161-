@@ -1,0 +1,19 @@
+Exercise 1: Control Structures
+Scenario 1: The bank wants to apply a discount to loan interest rates for customers above 60 years old.
+
+
+BEGIN
+    FOR REC IN (
+        SELECT C.CUSTOMERID, C.DOB, L.LOANID, L.INTERESTRATE
+        FROM CUSTOMERS C
+        INNER JOIN LOANS L ON C.CUSTOMERID = L.CUSTOMERID
+    ) LOOP
+        IF TRUNC(MONTHS_BETWEEN(SYSDATE, REC.DOB)/12) > 60 THEN
+            UPDATE LOANS
+            SET INTERESTRATE = REC.INTERESTRATE-1
+            WHERE LOANID = REC.LOANID; 
+            DBMS_OUTPUT.PUT_LINE('1% discount applied for Customer ID: ' || REC.CUSTOMERID);
+        END IF;
+    END LOOP;
+    COMMIT;
+END;

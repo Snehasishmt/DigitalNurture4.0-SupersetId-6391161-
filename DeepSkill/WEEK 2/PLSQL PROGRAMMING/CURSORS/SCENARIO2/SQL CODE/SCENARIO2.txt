@@ -1,0 +1,23 @@
+Exercise 6: Cursors
+Scenario 2: Apply annual fee to all accounts.
+Question: Write a PL/SQL block using an explicit cursor ApplyAnnualFee that deducts an annual maintenance fee from the balance of all accounts.
+
+
+DECLARE
+   CURSOR ApplyAnnualFee IS
+      SELECT AccountID, Balance FROM Accounts;
+
+   v_fee CONSTANT NUMBER := 100;
+
+BEGIN
+   FOR rec IN ApplyAnnualFee 
+   LOOP
+      UPDATE Accounts
+      SET Balance = Balance - v_fee,
+          LastModified = SYSDATE
+      WHERE AccountID = rec.AccountID;
+      DBMS_OUTPUT.PUT_LINE('Annual fee of ' || v_fee || ' deducted from Account ID: ' || rec.AccountID);
+   END LOOP;
+
+   COMMIT;
+END;
