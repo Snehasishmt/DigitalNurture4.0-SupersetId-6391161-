@@ -1,0 +1,78 @@
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git checkout master
+Already on 'master'
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .hello.xml.swp
+        .hello_LOCAL_1390.xml.swp
+        .hello_REMOTE_1390.xml.swp
+        hello_BACKUP_1390.xml
+        hello_BASE_1390.xml
+        hello_LOCAL_1390.xml
+        hello_REMOTE_1390.xml
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git add .
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git commit -m "Added"
+[master 3aa2d0e] Added
+ 7 files changed, 7 insertions(+)
+ create mode 100644 .hello.xml.swp
+ create mode 100644 .hello_LOCAL_1390.xml.swp
+ create mode 100644 .hello_REMOTE_1390.xml.swp
+ create mode 100644 hello_BACKUP_1390.xml
+ create mode 100644 hello_BASE_1390.xml
+ create mode 100644 hello_LOCAL_1390.xml
+ create mode 100644 hello_REMOTE_1390.xml
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git branch -a
+* master
+  remotes/origin/master
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git pull origin master
+From https://github.com/Snehasishmt/GitDemo
+ * branch            master     -> FETCH_HEAD
+Already up to date.
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git checkout Git-T03-HOL_002
+error: pathspec 'Git-T03-HOL_002' did not match any file(s) known to git
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git push origin main
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/Snehasishmt/GitDemo.git'
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git push main origin
+error: src refspec origin does not match any
+error: failed to push some refs to 'main'
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git push origin master
+Enumerating objects: 26, done.
+Counting objects: 100% (26/26), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (20/20), done.
+Writing objects: 100% (25/25), 2.74 KiB | 701.00 KiB/s, done.
+Total 25 (delta 6), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (6/6), done.
+To https://github.com/Snehasishmt/GitDemo.git
+   5803483..3aa2d0e  master -> master
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$

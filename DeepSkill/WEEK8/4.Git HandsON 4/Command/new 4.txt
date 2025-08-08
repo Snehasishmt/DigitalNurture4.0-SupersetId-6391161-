@@ -1,0 +1,153 @@
+sneha@DESKTOP-PLQA06O MINGW64 ~
+$ cd Gitdemo
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master|MERGING)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 3 commits.
+  (use "git push" to publish your local commits)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both added:      hello.xml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .hello.xml.swp
+        .hello_LOCAL_1390.xml.swp
+        .hello_REMOTE_1390.xml.swp
+        hello_BACKUP_1390.xml
+        hello_BASE_1390.xml
+        hello_LOCAL_1390.xml
+        hello_REMOTE_1390.xml
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master|MERGING)
+$ git checkout main
+error: pathspec 'main' did not match any file(s) known to git
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master|MERGING)
+$ git checkout master
+hello.xml: needs merge
+error: you need to resolve your current index first
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master|MERGING)
+$ cat hello.xml
+<<<<<<< HEAD
+<greeting>Hello from master branch</greeting>
+=======
+<greeting>Hello again from GitWork branch</greeting>
+>>>>>>> Gitwork
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master|MERGING)
+$ git checkout Gitwork
+hello.xml: needs merge
+error: you need to resolve your current index first
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master|MERGING)
+$ cat hello.xml
+<<<<<<< HEAD
+<greeting>Hello from master branch</greeting>
+=======
+<greeting>Hello again from GitWork branch</greeting>
+>>>>>>> Gitwork
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master|MERGING)
+$ git merge Gitwork
+error: Merging is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master|MERGING)
+$ git merge Gitwork
+error: Merging is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master|MERGING)
+$ git add hello.xml
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master|MERGING)
+$ git commit -m "Conflict Resolved"
+[master 84d469f] Conflict Resolved
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git log --merge
+fatal: --merge requires one of the pseudorefs MERGE_HEAD, CHERRY_PICK_HEAD, REVERT_HEAD or REBASE_HEAD
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git log --oneline
+84d469f (HEAD -> master) Conflict Resolved
+5d0266d Add hello.xml with different content in master
+a04301e (Gitwork) added hello.xml from Gitbranch
+2b76623 Added feature.txt
+7162cc9 Added .gitignore to ignore .log files and log/ folder
+5803483 (origin/master) Committed
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 5 commits.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .hello.xml.swp
+        .hello_LOCAL_1390.xml.swp
+        .hello_REMOTE_1390.xml.swp
+        hello_BACKUP_1390.xml
+        hello_BASE_1390.xml
+        hello_LOCAL_1390.xml
+        hello_REMOTE_1390.xml
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git checkout master
+Already on 'master'
+Your branch is ahead of 'origin/master' by 5 commits.
+  (use "git push" to publish your local commits)
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git merge Gitwork
+Already up to date.
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ echo "*.bak" >>.gitignore
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git add .gitignore
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git commit -m "gitignore added"
+[master 4e8b4cd] gitignore added
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git branch
+  Gitwork
+* master
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git branch -d Gitwork
+Deleted branch Gitwork (was a04301e).
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/Gitdemo (master)
+$ git log --oneline --graph --decorate
+* 4e8b4cd (HEAD -> master) gitignore added
+*   84d469f Conflict Resolved
+|\
+| * a04301e added hello.xml from Gitbranch
+* | 5d0266d Add hello.xml with different content in master
+|/
+* 2b76623 Added feature.txt
+* 7162cc9 Added .gitignore to ignore .log files and log/ folder
+* 5803483 (origin/master) Committed

@@ -1,0 +1,99 @@
+sneha@DESKTOP-PLQA06O MINGW64 ~
+$ notepad++
+
+sneha@DESKTOP-PLQA06O MINGW64 ~
+$ git --version
+git version 2.50.1.windows.1
+
+sneha@DESKTOP-PLQA06O MINGW64 ~
+$ git config --global --list
+user.name=Snehasish
+user.email=Snehasishmt@gmail.com
+
+sneha@DESKTOP-PLQA06O MINGW64 ~
+$ git config --global core.editor "notepad++ -multiInst -nosession"
+
+sneha@DESKTOP-PLQA06O MINGW64 ~
+$ git config --global --edit
+
+sneha@DESKTOP-PLQA06O MINGW64 ~
+$ mkdir GitDemo
+
+sneha@DESKTOP-PLQA06O MINGW64 ~
+$ cd GitDemo
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo
+$ git init
+Initialized empty Git repository in C:/Users/sneha/GitDemo/.git/
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ ls -a
+./  ../  .git/
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ touch welcome.txt
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ cat welcome.txt
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ cat> welcome.txt
+Welcome to Git Demo
+
+[1]+  Stopped                 cat > welcome.txt
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ cat welcome.txt
+Welcome to Git Demo
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        welcome.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ git add welcome.txt
+warning: in the working copy of 'welcome.txt', LF will be replaced by CRLF the next time Git touches it
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ git commit
+Aborting commit due to empty commit message.
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ git commit -m "Committed"
+[master (root-commit) 5803483] Committed
+ 1 file changed, 1 insertion(+)
+ create mode 100644 welcome.txt
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ git remote add origin https://github.com/Snehasishmt/GitDemo.git
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ git pull origin master --allow-unrelated-histories
+fatal: couldn't find remote ref master
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ git pull origin main --allow-unrelated-histories
+fatal: couldn't find remote ref main
+
+sneha@DESKTOP-PLQA06O MINGW64 ~/GitDemo (master)
+$ git push -u origin master
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 232 bytes | 232.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/Snehasishmt/GitDemo.git
+ * [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.
